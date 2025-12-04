@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengkel Las Sandro Natanael</title>
+    <!-- Memuat Tailwind CSS untuk styling modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Latar belakang yang lebih cocok untuk industri */
+            background-color: rgb(255, 230, 91); 
+        }
+        /* Styling khusus untuk efek hover dan transisi */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: oklab(82.192% -0.11082 -0.05903); /* Warna merah/api untuk aksen */
+            margin-top: 8px;
+            border-radius: 9999px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .service-image {
+            object-fit: cover;
+            width: 100%;
+            height: 200px; /* TINGGI GAMBAR LAYANAN DIPERBESAR menjadi 200px */
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        /* Penyesuaian tata letak grid untuk Layanan agar lebih rapi */
+        @media (min-width: 768px) {
+            .service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar/Header -->
+    <header class="bg-gray-800 shadow-xl sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-2xl font-extrabold text-white">
+                <span class="text-red-500">BENGKEL LAS</span> SANDRO
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#profil" class="text-gray-300 hover:text-red-500 transition duration-150">Profil</a>
+                <a href="#layanan" class="text-gray-300 hover:text-red-500 transition duration-150">Layanan & Orderan</a>
+                <a href="#kontak" class="text-gray-300 hover:text-red-500 transition duration-150">Kontak</a>
+            </div>
+            <!-- Tombol Menu Mobile (JavaScript akan mengontrol) -->
+            <button id="menu-button" class="md:hidden text-gray-300 hover:text-red-500 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Menu Mobile (Tersembunyi secara default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-700 shadow-lg">
+            <a href="#profil" class="block px-4 py-2 text-white hover:bg-gray-600">Profil</a>
+            <a href="#layanan" class="block px-4 py-2 text-white hover:bg-gray-600">Layanan & Orderan</a>
+            <a href="#kontak" class="block px-4 py-2 text-white hover:bg-gray-600">Kontak</a>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+        <!-- Bagian 1: Profil (Home/Jumbotron) -->
+        <section id="profil" class="flex flex-col lg:flex-row items-center justify-between bg-white p-8 rounded-xl shadow-lg">
+            <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
+                <p class="text-xl text-red-600 font-semibold mb-2">Selamat Datang di</p>
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                    BENGKEL LAS SANDRO NATANAEL
+                </h1>
+                <h2 class="text-2xl font-light text-gray-700 mt-2 mb-6">
+                    Ahli Fabrikasi Logam & Pengelasan Profesional.
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    Kami menyediakan layanan pengerjaan besi dan baja berkualitas tinggi untuk kebutuhan rumah, kantor, atau proyek Anda. Kami mengutamakan kekuatan, estetika, dan ketepatan waktu dalam setiap orderan. Hubungi kami untuk konsultasi desain dan harga terbaik!
+                </p>
+                <a href="#kontak" class="mt-8 inline-block bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 transform hover:scale-105 shadow-lg">
+                    Dapatkan Penawaran
+                </a>
+            </div>
+            <!-- Gambar Profil -->
+            <div class="lg:w-1/2 flex justify-center">
+                <!-- SILAKAN GANTI URL INI DENGAN LINK FOTO PROFIL BENGKEL ANDA (Dianjurkan resolusi kotak) -->
+                <img 
+                    id="profile-image"
+                    src="C:\Users\ASUS\Downloads\image foto profil.jpeg"
+                    alt="Foto Profil Bengkel Las" 
+                    class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl border-4 border-red-500"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/ef4444/FFFFFF?text=FOTO+BENGKEL+LAS';"
+                >
+            </div>
+        </section>
+
+        <!-- Bagian 2: Layanan Kami (Keahlian Saya & Jenis Orderan) - TELAH DIPERBAIKI DENGAN GAMBAR BESAR -->
+        <section id="layanan" class="text-center">
+            <h2 class="section-title text-4xl font-extrabold text-gray-800 mb-12 inline-block">Layanan Kami & Jenis Orderan</h2>
+            
+            <!-- Menggunakan tata letak grid yang lebih fleksibel dan responsive -->
+            <div class="service-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                
+                <!-- Layanan 1: Kanopi dan Atap -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg">
+                    <!-- GAMBAR UNTUK KANOPI -->
+                    <img 
+                        src="C:\Users\ASUS\Downloads\image pemasangan kanopi.jpeg"
+                        alt="Pembuatan Kanopi dan Atap"
+                        class="service-image"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x200/06b6d4/ffffff?text=Kanopi+%26+Atap';"
+                    >
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Kanopi & Atap</h3>
+                    <p class="text-gray-600 text-sm">Pembuatan kanopi (polikarbonat, spandek, alderon) untuk carport, teras, dan balkon dengan desain minimalis hingga modern.</p>
+                </div>
+                
+                <!-- Layanan 2: Pagar dan Gerbang -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg">
+                    <!-- GAMBAR UNTUK PAGAR -->
+                    <img 
+                        src="C:\Users\ASUS\Downloads\image Las Pagar.jpeg"
+                        class="service-image"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x200/10b981/ffffff?text=Pagar+%26+Gerbang';"
+                    >
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Pagar & Gerbang</h3>
+                    <p class="text-gray-600 text-sm">Spesialisasi pagar minimalis, besi tempa, gerbang sliding otomatis, dan pintu harmonika yang kokoh dan indah.</p>
+                </div>
+
+                <!-- Layanan 3: Teralis dan Railing -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg">
+                    <!-- GAMBAR UNTUK TERALIS -->
+                    <img 
+                        src="C:\Users\ASUS\Downloads\image tralis jendela.jpeg"
+                        alt="Teralis Jendela dan Railing Tangga"
+                        class="service-image"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x200/f59e0b/ffffff?text=Teralis+%26+Railing';"
+                    >
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Teralis & Railing</h3>
+                    <p class="text-gray-600 text-sm">Pemasangan teralis jendela pengaman, railing tangga, dan balkon dengan desain tematik modern atau klasik.</p>
+                </div>
+
+                <!-- Layanan 4: Fabrikasi Custom & Perbaikan -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg">
+                    <!-- GAMBAR UNTUK CUSTOM -->
+                    <img 
+                        src="C:\Users\ASUS\Downloads\image Las Tralis.jpeg"
+                        alt="Fabrikasi Kustom dan Perbaikan"
+                        class="service-image"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x200/ef4444/ffffff?text=Custom+%26+Perbaikan';"
+                    >
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Fabrikasi Custom</h3>
+                    <p class="text-gray-600 text-sm">Menerima orderan kustom seperti meja/kursi besi, rangka mesin, hingga perbaikan dan modifikasi struktur logam.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 3: Kontak -->
+        <section id="kontak" class="text-center bg-white p-8 rounded-xl shadow-lg">
+            <h2 class="section-title text-4xl font-extrabold text-gray-800 mb-12 inline-block">Hubungi Kami</h2>
+            
+            <div class="max-w-xl mx-auto space-y-6">
+                <p class="text-gray-700 text-lg">
+                    Siap untuk memesan atau konsultasi proyek pengelasan Anda? Hubungi Sandro Natanael sekarang juga!
+                </p>
+
+                <!-- Form Kontak (Placeholder) -->
+                <form id="contact-form" class="space-y-4">
+                    <input type="text" placeholder="Nama Anda" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                    <input type="tel" placeholder="Nomor Telepon/WhatsApp" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                    <textarea placeholder="Jenis Orderan dan Lokasi Pemasangan" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required></textarea>
+                    <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300 transform hover:scale-[1.01] shadow-md">
+                        Kirim Permintaan Penawaran
+                    </button>
+                    <!-- Pesan status akan ditampilkan di sini -->
+                    <p id="form-status" class="text-sm pt-2 font-semibold"></p>
+                </form>
+
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
+                    <!-- Icon WhatsApp (SVG - Logo WA terbaik untuk 1 file HTML) -->
+                    <!-- SILAKAN GANTI ANGKA TELEPON 082172304200 dengan NOMOR TELEPON ANDA -->
+                    <a href="https://wa.me/6282172304200" target="_blank" class="text-gray-600 hover:text-green-600 transition duration-150 transform hover:scale-110 flex items-center justify-center font-bold bg-gray-100 p-3 rounded-xl shadow-inner">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.038 2.016c-5.523 0-10 4.477-10 10 0 1.77.46 3.432 1.258 4.887l-1.31 4.793 4.97-1.306c1.42.77 3.03 1.185 4.902 1.185 5.523 0 10-4.477 10-10s-4.477-10-10-10zm-1.897 14.86c-.198-.073-.42-.084-.64-.02l-1.68.79-.17-.48c-.02-.07-.05-.13-.07-.2-.23-1.14-.59-2.22-1.07-3.23-.42-.87-.87-1.69-1.34-2.48l-.05-.08c-.28-.48-.44-.75-.38-1.01.07-.3.34-.48.65-.55l.89-.25c.16-.04.33-.04.49-.01l.82.16c.2.04.39.1.57.19.18.09.36.2.53.33l.03.02c.16.14.3.29.43.46.12.16.23.33.32.51.27.52.41 1.09.41 1.67 0 .58-.12 1.15-.37 1.67-.17.34-.39.64-.67.9-.27.26-.59.46-.94.6l-.16.07c-.36.14-.72.24-1.09.32-.4.09-.81.14-1.22.14zM16.9 14.88c.198-.073.42-.084-.64-.02l-1.68.79-.17-.48c-.02-.07-.05-.13-.07-.2-.23-1.14-.59-2.22-1.07-3.23-.42-.87-.87-1.69-1.34-2.48l-.05-.08c-.28-.48-.44-.75-.38-1.01.07-.3.34-.48.65-.55l.89-.25c.16-.04.33-.04.49-.01l.82.16c.2.04.39.1.57.19.18.09.36.2.53.33l.03.02c.16.14.3.29.43.46.12.16.23.33.32.51.27.52.41 1.09.41 1.67 0 .58-.12 1.15-.37 1.67-.17.34-.39.64-.67.9-.27.26-.59.46-.94.6l-.16.07c-.36.14-.72.24-1.09.32-.4.09-.81.14-1.22.14zM12.038 4.016c4.418 0 8 3.582 8 8s-3.582 8-8 8c-1.39 0-2.7-.35-3.85-.97l-.27-.16-2.58.68.7-2.54-.16-.27c-.64-1.16-.99-2.49-.99-3.84 0-4.418 3.582-8 8-8zm0-2c-5.523 0-10 4.477-10 10s4.477 10 10 10c1.78 0 3.44-.46 4.88-1.26l4.79 1.31-1.31-4.79c.77-1.42 1.18-3.03 1.18-4.9c0-5.523-4.477-10-10-10z"/>
+                        </svg>
+                        0821-7230-4200 (WhatsApp)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+            <p>&copy; <span id="current-year"></span> Bengkel Las Sandro Natanael. Dibuat dengan Kualitas Terbaik.</p>
+            <p class="text-sm mt-2">Design & Fabrikasi. Layanan Seluruh Area.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk interaktivitas -->
+    <script>
+        // Mengisi tahun saat ini di footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Logika untuk menu mobile
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Menutup menu mobile saat link diklik
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Logika sederhana untuk form kontak (mencegah submission, menampilkan status)
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formStatus = document.getElementById('form-status');
+            
+            // Simulasikan pengiriman
+            formStatus.textContent = 'Permintaan penawaran sedang diproses...';
+            formStatus.classList.remove('text-red-500', 'text-green-500');
+            formStatus.classList.add('text-gray-500');
+
+            setTimeout(() => {
+                // Simulasikan berhasil
+                formStatus.textContent = 'Permintaan berhasil terkirim! Kami akan segera menghubungi Anda.';
+                formStatus.classList.remove('text-gray-500');
+                formStatus.classList.add('text-green-500');
+                this.reset(); // Mengosongkan form
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
